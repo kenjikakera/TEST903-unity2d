@@ -23,6 +23,7 @@ public class CreateMaze : MonoBehaviour
 
     private GameObject goGM;
     private GameManager scGM;
+
     /*
         private const int maxBox = 15;
         // 宝箱のデータ
