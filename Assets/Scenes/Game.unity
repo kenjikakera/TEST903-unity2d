@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 346156843}
   - component: {fileID: 346156842}
   m_Layer: 5
-  m_Name: Armar
+  m_Name: myItem1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 729374077}
   - component: {fileID: 729374076}
   m_Layer: 5
-  m_Name: Sword
+  m_Name: myItem0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1699,6 +1699,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
         type: 3}
+      propertyPath: myItem.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItemImage.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: button.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
       propertyPath: variableJoystick
       value: 
       objectReference: {fileID: 339932331}
@@ -1739,5 +1754,61 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9029012170903786172, guid: 573073f2354eca842a83e2c0c698ef76,
         type: 3}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItem.Array.data[0]
+      value: 
+      objectReference: {fileID: 729374074}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItem.Array.data[1]
+      value: 
+      objectReference: {fileID: 346156840}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItemImage.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f7f282eb2e881ad41baa009824125440,
+        type: 3}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItemImage.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: a22c920762abf204fbf9962d4c89a44b,
+        type: 3}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItemImage.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7cad6755649374e4fa306eeec3034f77,
+        type: 3}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItemImage.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5eaca2502b314ab43a0b202736cbd8b3,
+        type: 3}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItemImage.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: d4d08a07c4f09a340a6d2a606c1824e7,
+        type: 3}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: myItemImage.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: c32b880416c9a2546b3bfb1baeb7281d,
+        type: 3}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: button.Array.data[0]
+      value: 
+      objectReference: {fileID: 959765151}
+    - target: {fileID: 7968990744010800419, guid: 57cbc91a9a56e0346ad18e7d57112597,
+        type: 3}
+      propertyPath: button.Array.data[1]
+      value: 
+      objectReference: {fileID: 866064395}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57cbc91a9a56e0346ad18e7d57112597, type: 3}

@@ -13,14 +13,11 @@ public class Player : MonoBehaviour
     public float vJoy = 50;
     public float rJoy = 70;
     public Rigidbody2D rd;
-    public GameObject button0;
-    public GameObject button1;
+    public GameObject[] button;
     public GameObject goText;
     public Sprite[] buttunImage;
-    public GameObject sword;
-    public Sprite[] swordImage;
-    public GameObject armar;
-    public Sprite[] armarImage;
+    public GameObject[] myItem;
+    public Sprite [] myItemImage;
     public ParticleSystem[] particle;
     public GameObject goFloor;
 
@@ -67,18 +64,14 @@ public class Player : MonoBehaviour
 
         scCM.makeMaze(0);
 
-        Image image;
-        image = sword.GetComponent<Image>();
-        image.sprite = swordImage[0];
+        setMyItemImage(0, 0);
+        setMyItemImage(1, 1);
         scGM.attack = 100;
-        image = armar.GetComponent<Image>();
-        image.sprite = armarImage[0];
         scGM.deffence = 100;
 
-        image = button0.GetComponent<Image>();
-        image.sprite = buttunImage[0];
-        image = button1.GetComponent<Image>();
-        image.sprite = buttunImage[0];
+        setButtonImage(0, 0);
+        setButtonImage(1, 0);
+
         Text text = goText.GetComponent<Text>();
         text.text = "";
         scGM.heal = 0;
@@ -142,21 +135,29 @@ public class Player : MonoBehaviour
         */
     }
 
-    void healSub()
+
+    // パーティカルの再生と破壊
+    void partialSub(int nPT,float destroyTume)
     {
         Vector3 pos3D = transform.position;
         pos3D.z = 90;
-        ParticleSystem pt = Instantiate(particle[0], pos3D, transform.rotation);
-        Destroy(pt, 3.0f);
+        ParticleSystem pt = Instantiate(particle[nPT], pos3D, transform.rotation);
+        Destroy(pt, destroyTume);
+    }
+
+    void healSub()
+    {
+        partialSub(0, 3.0f);
         scSM.PlaySE(2);
         scGM.life += (scGM.maxLife * 0.2f);
         if (scGM.life > scGM.maxLife) scGM.life = scGM.maxLife;
     }
 
 
+
     public void actionButton()
     {
-        Image bimage = button0.GetComponent<Image>();
+        Image bimage = button[0].GetComponent<Image>();
         if (bimage.sprite == buttunImage[1])
         {
             healSub();
@@ -184,69 +185,37 @@ public class Player : MonoBehaviour
                 mazeItem scMI = boxGO.GetComponent<mazeItem>();
                 scSM.PlaySE(4);
                 scCM.maze[scMI.x,scMI.y,scMI.floor] = 6;
-                Image simage;
-                Vector3 pos3D;
-                ParticleSystem pt;
                 switch (scMI.itemNum)
                 {
                     // 肉
-/*
                     case 0:
                         scGM.heal++;
                         Vector2 pos2D = transform.position;
                         my = pos2D;
-                        simage = button1.GetComponent<Image>();
-                        simage.sprite = buttunImage[5];
-                        Text text = goText.GetComponent<Text>();
-                        text.text = scGM.heal.ToString();
-                        break;
-*/
-                    // 肉
-                    case 0:
-                        scGM.heal++;
-                        Vector2 pos2D = transform.position;
-                        my = pos2D;
-                        simage = button1.GetComponent<Image>();
-                        simage.sprite = buttunImage[5];
+                        setButtonImage(1, 5);
                         Text text = goText.GetComponent<Text>();
                         text.text = scGM.heal.ToString();
                         break;
                     // ロングソード
                     case 1:
-                        pos3D = transform.position;
-                        pos3D.z = 90;
-                        pt = Instantiate(particle[1], pos3D, transform.rotation);
-                        Destroy(pt, 3.0f);
-                        simage = sword.GetComponent<Image>();
-                        simage.sprite = swordImage[1];
+                        partialSub(1, 3.0f);
+                        setMyItemImage(0,2);
                         scGM.attack = 125;
                         break;
                     // シルバーアーマー
                     case 2:
-                        pos3D = transform.position;
-                        pos3D.z = 90;
-                        pt = Instantiate(particle[1], pos3D, transform.rotation);
-                        Destroy(pt, 3.0f);
-                        simage = armar.GetComponent<Image>();
-                        simage.sprite = armarImage[1];
+                        partialSub(1, 3.0f);
+                        setMyItemImage(1, 3);
                         scGM.deffence = 125;
                         break;
                     case 3:
-                        pos3D = transform.position;
-                        pos3D.z = 90;
-                        pt = Instantiate(particle[1], pos3D, transform.rotation);
-                        Destroy(pt, 3.0f);
-                        simage = sword.GetComponent<Image>();
-                        simage.sprite = swordImage[2];
+                        partialSub(1, 3.0f);
+                        setMyItemImage(0, 4);
                         scGM.attack = 150;
                         break;
                     case 4:
-                        pos3D = transform.position;
-                        pos3D.z = 90;
-                        pt = Instantiate(particle[1], pos3D, transform.rotation);
-                        Destroy(pt, 3.0f);
-                        simage = armar.GetComponent<Image>();
-                        simage.sprite = armarImage[2];
+                        partialSub(1, 3.0f);
+                        setMyItemImage(1, 5);
                         scGM.deffence = 150;
                         break;
                 }
@@ -270,9 +239,7 @@ public class Player : MonoBehaviour
             scGM.heal--;
             if (scGM.heal == 0)
             {
-                Image image;
-                image = button1.GetComponent<Image>();
-                image.sprite = buttunImage[0];
+                setButtonImage(1, 0);
                 text = goText.GetComponent<Text>();
                 text.text = "";
             } else
@@ -296,6 +263,26 @@ public class Player : MonoBehaviour
             }
         }
 
+    //
+    void setImageSub(GameObject go,Sprite sprite)
+    {
+        Image bimage = go.GetComponent<Image>();
+        bimage.sprite = sprite;
+    }
+
+    // ボタンにイメージを設定する
+    void setButtonImage(int nButton,int nImage)
+    {
+        setImageSub(button[nButton], buttunImage[nImage]);
+    }
+
+    // アイテムにイメージを設定する
+    void setMyItemImage(int num, int nImage)
+    {
+        setImageSub(myItem[num], myItemImage[nImage]);
+    }
+
+
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.tag == "rest")
@@ -307,12 +294,10 @@ public class Player : MonoBehaviour
             item = coll.transform.position;
             if (coll.transform.position.x-0.63f/4 < pos2D.x && coll.transform.position.x + 0.63f/4 > pos2D.x && coll.transform.position.y - 0.63f/4 < pos2D.y && coll.transform.position.y + 0.63f/4 > pos2D.y)
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[1];
+                setButtonImage(0, 1);
             } else
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[0];
+                setButtonImage(0, 0);
             }
         }
         if (coll.tag == "floordown")
@@ -324,13 +309,11 @@ public class Player : MonoBehaviour
             item = coll.transform.position;
             if (coll.transform.position.x - 0.63f / 4 < pos2D.x && coll.transform.position.x + 0.63f / 4 > pos2D.x && coll.transform.position.y - 0.63f / 4 < pos2D.y && coll.transform.position.y + 0.63f / 4 > pos2D.y)
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[2];
+                setButtonImage(0, 2);
             }
             else
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[0];
+                setButtonImage(0, 0);
             }
         }
         if (coll.tag == "floorup")
@@ -342,13 +325,11 @@ public class Player : MonoBehaviour
             item = coll.transform.position;
             if (coll.transform.position.x - 0.63f / 4 < pos2D.x && coll.transform.position.x + 0.63f / 4 > pos2D.x && coll.transform.position.y - 0.63f / 4 < pos2D.y && coll.transform.position.y + 0.63f / 4 > pos2D.y)
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[3];
+                setButtonImage(0, 3);
             }
             else
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[0];
+                setButtonImage(0, 0);
             }
         }
         if (coll.tag == "box")
@@ -359,13 +340,11 @@ public class Player : MonoBehaviour
             item = coll.transform.position;
             if (coll.transform.position.x - 0.63f / 4 < pos2D.x && coll.transform.position.x + 0.63f / 4 > pos2D.x && coll.transform.position.y - 0.63f / 4 < pos2D.y && coll.transform.position.y + 0.63f / 4 > pos2D.y)
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[4];
+                setButtonImage(0, 4);
             }
             else
             {
-                Image bimage = button0.GetComponent<Image>();
-                bimage.sprite = buttunImage[0];
+                setButtonImage(0, 0);
             }
         }
         if (coll.tag == "enemy" && enemyGO == null)
@@ -380,8 +359,7 @@ public class Player : MonoBehaviour
     {
         boxGO = null;
         enemyGO = null;
-        Image bimage = button0.GetComponent<Image>();
-        bimage.sprite = buttunImage[0];
+        setButtonImage(0, 0);
     }
 
 
