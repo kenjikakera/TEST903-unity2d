@@ -21,14 +21,15 @@ public class SoundMgr : MonoBehaviour
         isSeMute = false;
         isBgmMute = false;
 
+        // シーン遷移でも壊れないGameObjectにする
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene(1);
     }
+ 
 
-
-
-
-
+    //
+    //  BGM(AudioSource)のクロスふぇーだルーチン
+    //
     void FixedUpdate()
     {
         for (int n = 0; n < audioSources.Length; n++)
@@ -65,9 +66,11 @@ public class SoundMgr : MonoBehaviour
         }
    }
 
+
+    // 効果音を鳴らす
     public void PlaySE(int num)
     {
-//        if (isSeMute) return;
+        if (isSeMute) return;
 
         GameObject soundObj = new GameObject("SE");
 
@@ -81,25 +84,47 @@ public class SoundMgr : MonoBehaviour
         Destroy(soundObj, seClip[num].length);
     }
 
-    public void PlaySE(Vector2 pos, int num)
-    {
-        //        if (isSeMute) return;
+    /*
+        // 効果音を鳴らす。2Dポジション付き。
+        public void PlaySE(Vector2 pos, int num)
+        {
+            if (isSeMute) return;
 
-        GameObject soundObj = new GameObject("SE");
-        soundObj.transform.position = pos;
+            GameObject soundObj = new GameObject("SE");
+            soundObj.transform.position = pos;
 
-        AudioSource _audioSource = soundObj.AddComponent<AudioSource>();
-        _audioSource.clip = seClip[num];
-        _audioSource.minDistance = 10.0f;
-        _audioSource.maxDistance = 30.0f;
-        _audioSource.volume = seVolume;
-        _audioSource.Play();
+            AudioSource _audioSource = soundObj.AddComponent<AudioSource>();
+            _audioSource.clip = seClip[num];
+            _audioSource.minDistance = 10.0f;
+            _audioSource.maxDistance = 30.0f;
+            _audioSource.volume = seVolume;
+            _audioSource.Play();
 
-        Destroy(soundObj, seClip[num].length);
-    }
+            Destroy(soundObj, seClip[num].length);
+        }
 
-    // 第一パラメーター:AudioSource番号 第二パラメータ(true:loop,false:OneShot)]
-    // AudioSourceのインスペクターに注意が必要.AudioListnerがどこについているかと.BGMはデフォルトの設定だとだめ.
+
+        // 効果音を鳴らす。3Dポジション付き。
+        public void PlaySE(Vector3 pos, int num)
+        {
+            if (isSeMute) return;
+
+            GameObject soundObj = new GameObject("SE");
+            soundObj.transform.position = pos;
+
+            AudioSource _audioSource = soundObj.AddComponent<AudioSource>();
+            _audioSource.clip = seClip[num];
+            _audioSource.minDistance = 10.0f;
+            _audioSource.maxDistance = 30.0f;
+            _audioSource.volume = seVolume;
+            _audioSource.Play();
+
+            Destroy(soundObj, seClip[num].length);
+        }
+    */
+
+
+    // BGM(AudioSource)をならす。
     public void PlayBGM(bool bFade, bool bLoop, int num)
     {
         if (num == nowBGM) return;
@@ -122,6 +147,7 @@ public class SoundMgr : MonoBehaviour
         }
     }
 
+    // BGMを止める。
     public void StopBgm(ulong num)
     {
         audioSources[num].Stop();
