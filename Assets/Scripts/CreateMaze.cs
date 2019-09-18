@@ -21,6 +21,8 @@ public class CreateMaze : MonoBehaviour
     private GameObject[,,] mazeItemGO = new GameObject[MazeSizeX, MazeSizeY, MazeSizeZ];
     private int[,,] itemNum = new int[MazeSizeX, MazeSizeY, MazeSizeZ];
 
+    private GameObject goGM;
+    private GameManager scGM;
     /*
         private const int maxBox = 15;
         // 宝箱のデータ
@@ -35,15 +37,17 @@ public class CreateMaze : MonoBehaviour
         public ITEMBOX[] itemBox = new ITEMBOX[maxBox];
     */
 
-    public int nWay = 1;
-    public int msX = 1;
-    public int msY = 1;
-    public int msZ = 0;
-    public int block = 0;
+    private int nWay = 1;
+    private int msX = 1;
+    private int msY = 1;
+    private int msZ = 0;
+    private int block = 0;
 
 
     void Awake()
     {
+        goGM = GameObject.Find("GameManager");
+        scGM = goGM.GetComponent<GameManager>();
         makeAllMaze();
     }
 
@@ -352,7 +356,7 @@ public class CreateMaze : MonoBehaviour
     // 敵の作成
     void makeEnemySub(int numType, int posX, int posY, float life, float attack, float deffence, float speed, int lifeAdd, float attackExp, float deffenceExp, float searchArea, int score,int floor)
     {
-                GameObject goEY = Instantiate(goEnemy[numType], new Vector3(100000, 100000, 100000), Quaternion.identity, goFloor.transform);
+                GameObject goEY = Instantiate(goEnemy[numType], scGM.pos3Dnot, Quaternion.identity, goFloor.transform);
                 Enemy scEY = goEY.GetComponent<Enemy>();
 
                 scEY.type = numType;

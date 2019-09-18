@@ -47,14 +47,14 @@ public class Enemy : MonoBehaviour
         Vector3 pos3D;
         if (scGM.floor != floor)
         {
-            transform.position = new Vector3(100000, 100000, 100000);
+            transform.position = scGM.pos3Dnot;
             return;
         }
         else
         {
             // 出現させる
             pos3D = transform.position;
-            if (pos3D == new Vector3(100000, 100000, 100000))
+            if (pos3D == scGM.pos3Dnot )
             {
                 transform.position = pos3DReal;
             }

@@ -153,8 +153,6 @@ public class Player : MonoBehaviour
         if (scGM.life > scGM.maxLife) scGM.life = scGM.maxLife;
     }
 
-
-
     public void actionButton()
     {
         Image bimage = button[0].GetComponent<Image>();

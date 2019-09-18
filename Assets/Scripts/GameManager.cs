@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int floor = 0;
     public int heal = 0;
     public GameObject obj;
+    public Vector3 pos3Dnot = new Vector3(10000,10000,10000);       // 自分のいるフロアー外の敵を一時的に表示させなくするための物
 
     private GameObject goSM;
     private SoundMgr scSM;

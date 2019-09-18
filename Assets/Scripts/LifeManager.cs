@@ -25,26 +25,4 @@ public class LifeManager : MonoBehaviour
     {
         cooldown.fillAmount = scGM.life / scGM.maxLife;
     }
-
-    /*
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-        // Update is called once per frame
-        void Update()
-        {
-            RectTransform rt;
-            rt = this.GetComponent<RectTransform>();
-            Vector2 v2 = rt.localScale;
-            v2.x = scGM.life;
-            rt.localScale = v2;
-          v2.x = v2.x / 2;
-          rt.localPosition = v2;
-
-        }
-    */
 }

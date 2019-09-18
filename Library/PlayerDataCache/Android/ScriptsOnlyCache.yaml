@@ -28,6 +28,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -391,7 +392,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 87cca36017e3138fd383e688fc5f9eb4
+      Hash: a979af7a4c82462b0a00c17915d2a26a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -577,7 +578,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: ce99fc8b703a52453339c020f145c604
+      Hash: 8d6717d869a00aa4b51c02e775028b4e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -781,7 +782,7 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: ef71756b5c0217292dc504da243def1c
+      Hash: 8fb7b3c26bddc87fdaaf671c21c43092
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CreateMaze
