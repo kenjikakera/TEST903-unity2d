@@ -33,7 +33,13 @@ iOS
 		端末:iPhoneXS max　1242x2688 比率9:16.5 androidos:9
 		端末:SH-M05　FullHD(1080×1920) 比率9:16 androidos:7.1.2
 
-●次は3Dのサンプルを作ろうと思いましたが、ハイスコアがMySQL(mariaDB)に残る、単純なものにします。
+
+Unity+PHP+MariaDBで、ハイスコアをデータベースに持たす実験も作りました。
+
+
+●Unity+PHP+MariaDBで、ハイスコアをデータベースに持たす実権。
+これの制作日数2日間。
+https://github.com/kenjikakera/TEST905_SC
 
 ●webページ
 https://www.ne.jp/asahi/kenji/pda/
