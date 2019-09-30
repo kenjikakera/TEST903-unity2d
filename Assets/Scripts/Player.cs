@@ -72,8 +72,7 @@ public class Player : MonoBehaviour
         setButtonImage(0, 0);
         setButtonImage(1, 0);
 
-        Text text = goText.GetComponent<Text>();
-        text.text = "";
+        goText.GetComponent<Text>().text="";
         scGM.heal = 0;
 
     }
@@ -191,8 +190,7 @@ public class Player : MonoBehaviour
                         Vector2 pos2D = transform.position;
                         my = pos2D;
                         setButtonImage(1, 5);
-                        Text text = goText.GetComponent<Text>();
-                        text.text = scGM.heal.ToString();
+                        goText.GetComponent<Text>().text = scGM.heal.ToString();
                         break;
                     // ロングソード
                     case 1:
